@@ -15,7 +15,7 @@ func (c *Client) Decks(ctx context.Context) ([]string, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -42,7 +42,7 @@ func (c *Client) CreateDeck(ctx context.Context, name string) (int, error) {
 		return 0, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return 0, err
 	}
@@ -69,7 +69,7 @@ func (c *Client) DeleteDecks(ctx context.Context, names []string) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}

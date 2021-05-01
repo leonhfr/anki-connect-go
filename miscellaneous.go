@@ -15,7 +15,7 @@ func (c *Client) Version(ctx context.Context) (int, error) {
 		return 0, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return 0, err
 	}
@@ -38,7 +38,7 @@ func (c *Client) Sync(ctx context.Context) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}

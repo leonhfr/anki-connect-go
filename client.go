@@ -18,18 +18,27 @@ const (
 
 // Client to connect to Anki.
 type Client struct {
-	HTTPClient *http.Client
-	URL        string
+	httpClient *http.Client
+	url        string
 	minVersion int
 }
 
-// NewClient returns a Client instance.
-func NewClient() *Client {
-	URL := fmt.Sprintf("http://%s:%s/", baseURL, strconv.Itoa(basePort))
+// NewClient returns a Client instance with the default URL.
+func NewClient(url string) *Client {
+	return &Client{
+		httpClient: &http.Client{Timeout: time.Minute},
+		url:        url,
+		minVersion: minVersion,
+	}
+}
+
+// NewDefaultClient returns a Client instance with the default URL.
+func NewDefaultClient() *Client {
+	url := fmt.Sprintf("http://%s:%s/", baseURL, strconv.Itoa(basePort))
 
 	return &Client{
-		HTTPClient: &http.Client{Timeout: time.Minute},
-		URL:        URL,
+		httpClient: &http.Client{Timeout: time.Minute},
+		url:        url,
 		minVersion: minVersion,
 	}
 }
@@ -48,7 +57,7 @@ func (c *Client) sendRequest(req *http.Request, v interface{}) error {
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 
-	res, err := c.HTTPClient.Do(req)
+	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return err
 	}

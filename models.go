@@ -32,7 +32,7 @@ func (c *Client) Models(ctx context.Context) ([]string, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *Client) CreateModel(ctx context.Context, model ModelInput) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}

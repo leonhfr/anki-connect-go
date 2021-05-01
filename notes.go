@@ -82,7 +82,7 @@ func (c *Client) FindNotes(ctx context.Context, query string) ([]int, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ func (c *Client) NotesInfo(ctx context.Context, notes []int) ([]NoteInfo, error)
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (c *Client) AddNote(ctx context.Context, note NoteInput) (int, error) {
 		return 0, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return 0, err
 	}
@@ -166,7 +166,7 @@ func (c *Client) AddNotes(ctx context.Context, notes []NoteInput) ([]int, error)
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +193,7 @@ func (c *Client) UpdateNote(ctx context.Context, note NoteFieldsInput) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}
@@ -220,7 +220,7 @@ func (c *Client) DeleteNotes(ctx context.Context, notes []int) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}
@@ -243,7 +243,7 @@ func (c *Client) DeleteEmptyNotes(ctx context.Context) error {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", c.URL, bytes.NewReader(body))
+	req, err := http.NewRequest("POST", c.url, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}
